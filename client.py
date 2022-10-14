@@ -1,14 +1,17 @@
 import tkinter
 import socket 
 import threading
-from tkinter import DISABLED, END, NORMAL, Label, simpledialog
+from tkinter import DISABLED, END, NORMAL, Label, simpledialog,filedialog
 from tkinter import Tk
+from PIL import Image
 import multiprocessing
+
 
 class Client:
     server=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
     def __init__(self) -> None:
-        self.server.connect(("127.0.0.1",9000))
+
+        self.server.connect(("34.125.20.239",3389))
         root=Tk()
         root.withdraw()
         self.nickname=simpledialog.askstring(root,"enter  your Nickname")
@@ -44,8 +47,13 @@ class Client:
 
     def changeRoomUI(self):
         room=str(simpledialog.askinteger("Change Room","enter  ROOM_ID:",parent=self.window))
+        ''''file=filedialog.askopenfilename(parent=self.window,title="Choose a file")
+        image=Image.open(file)
+        print (image)
+        for i in image:
+            print(i)'''
         self.changeRoom(room)
-        print (room)
+        
 
     def createRoom(self):
         self.messagebox.config(state=NORMAL)
